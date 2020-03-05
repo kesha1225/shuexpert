@@ -1,0 +1,2 @@
+class NotAnExpertException(Exception):
+    pass
