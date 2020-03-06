@@ -156,8 +156,11 @@ class Expert(ExpertBase):
             items = feed_posts["response"]["items"]
             for item in items:
                 if item["rating"]["rated"] != 0:
-                    if item["track_code"] not in self.skipped:  # Don't count the same post as skipped
-                        self.skipped.append(item["track_code"])
+                    track = item["date"] + item["post_id"]
+                    if (
+                        track not in self.skipped
+                    ):  # Don't count the same post as skipped
+                        self.skipped.append(track)
                     continue
 
                 rating = int(item["rating"]["value"])
